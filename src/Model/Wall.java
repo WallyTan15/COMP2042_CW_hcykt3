@@ -37,6 +37,7 @@ public class Wall {
     public Crack crack;
     public Ball ball;
     public Player player;
+    public Score score;
 
     private Brick[][] levels;
     private int level;
@@ -73,6 +74,7 @@ public class Wall {
 
         area = drawArea;
 
+        score = new Score();
 
     }
 
@@ -188,6 +190,7 @@ public class Wall {
             * because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
+            score.addScore();
         }
         else if(impactBorder()) {
             ball.reverseX();
