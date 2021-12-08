@@ -24,11 +24,12 @@ import java.util.Random;
 
 public class Wall {
 
-    private static final int LEVELS_COUNT = 4;
+    private static final int LEVELS_COUNT = 7;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
+    private static final int SLIME = 4;
 
     private Random rnd;
     private Rectangle area;
@@ -172,7 +173,10 @@ public class Wall {
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
-        tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,SLIME);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[5] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,SLIME,CEMENT);
+        tmp[6] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,SLIME,STEEL);
         return tmp;
     }
 
@@ -306,6 +310,9 @@ public class Wall {
                 break;
             case CEMENT:
                 out = new CementBrick(point, size);
+                break;
+            case SLIME:
+                out = new SlimeBrick(point,size); //this
                 break;
             default:
                 throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
