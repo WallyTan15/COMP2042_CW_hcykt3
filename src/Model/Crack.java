@@ -3,6 +3,7 @@ package Model;
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
+import java.util.Random;
 
 public class Crack {
     private static final int CRACK_SECTIONS = 3;
@@ -18,6 +19,7 @@ public class Crack {
     private Brick brick;
 
     private GeneralPath crack;
+    private Random rnd;
 
     private int crackDepth;
     private int steps;
@@ -29,6 +31,7 @@ public class Crack {
         crack = new GeneralPath();
         this.crackDepth = crackDepth;
         this.steps = steps;
+        rnd = new Random();
 
     }
 
@@ -41,7 +44,7 @@ public class Crack {
     }
 
     protected void makeCrack(Point2D point, int direction){
-        Rectangle bounds = brickFace.getBounds();
+        Rectangle bounds = brick.getBrickFace().getBounds();
 
         Point impact = new Point((int)point.getX(),(int)point.getY());
         Point start = new Point();

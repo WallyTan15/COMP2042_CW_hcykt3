@@ -21,8 +21,6 @@ abstract public class Brick  {
     public static final int LEFT_IMPACT = 300;
     public static final int RIGHT_IMPACT = 400;
 
-    private static Random rnd;
-
     private String name;
     Shape brickFace;
 
@@ -36,7 +34,7 @@ abstract public class Brick  {
 
 
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
-        rnd = new Random();
+
         broken = false;
         this.name = name;
         brickFace = makeBrickFace(pos,size);
@@ -94,6 +92,9 @@ abstract public class Brick  {
         broken = (strength == 0);
     }
 
+    public Shape getBrickFace(){
+        return brickFace;
+    }
 
 
 }
