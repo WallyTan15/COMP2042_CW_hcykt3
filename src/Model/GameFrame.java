@@ -19,6 +19,7 @@ package Model;
 
 import View.GameBoard;
 import View.HomeMenu;
+import View.ScoreBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +33,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
+    private ScoreBoard scoreBoard;
 
     private boolean gaming;
 
@@ -45,6 +47,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameBoard = new GameBoard(this);
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
+
+        scoreBoard = new  ScoreBoard(this,new Dimension(450,300),gameBoard.getScoreController());
 
         this.add(homeMenu,BorderLayout.CENTER);
 
@@ -70,6 +74,24 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         /*to avoid problems with graphics focus controller is added here*/
         this.addWindowFocusListener(this);
 
+    }
+
+    public void enableHomeMenu() {
+        this.dispose();
+        this.remove(scoreBoardMenu);
+        this.add(homeMenu,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        this.addWindowFocusListener(this);
+    }
+
+    public void enableScoreBoardMenu() {
+        this.dispose();
+        this.remove(homeMenu);
+        this.add(scoreBoardMenu,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        this.addWindowFocusListener(this);
     }
 
     private void autoLocate(){
