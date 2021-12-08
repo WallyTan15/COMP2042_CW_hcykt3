@@ -72,4 +72,9 @@ public class Score {
             }
         }
     }
+
+    public void copyRecord(int[] record){
+        readFile();
+        System.arraycopy(gameRecord, 0, record, 0, gameRecord.length);
+    }
 }
