@@ -17,6 +17,7 @@
  */
 package View;
 
+import Controller.DebugController;
 import Model.Ball;
 import Model.DebugPanel;
 import Model.Wall;
@@ -32,7 +33,7 @@ public class DebugConsole extends JDialog implements WindowListener{
 
 
     private JFrame owner;
-    private DebugPanel debugPanel;
+    private DebugController debugController;
     private GameBoard gameBoard;
     private Wall wall;
 
@@ -44,8 +45,8 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.gameBoard = gameBoard;
         initialize();
 
-        debugPanel = new DebugPanel(wall);
-        this.add(debugPanel,BorderLayout.CENTER);
+        debugController = new DebugController(new DebugPanel(wall));
+        this.add(debugController.getDebugPanel(),BorderLayout.CENTER);
 
 
         this.pack();
@@ -97,7 +98,7 @@ public class DebugConsole extends JDialog implements WindowListener{
     public void windowActivated(WindowEvent windowEvent) {
         setLocation();
         Ball b = wall.ball;
-        debugPanel.setValues(b.getSpeedX(),b.getSpeedY());
+        debugController.setBallSpeedValues(b.getSpeedX(), b.getSpeedY());
     }
 
     @Override
