@@ -12,7 +12,7 @@ abstract public class Ball {
 
     private Shape ballFace;
 
-    private Point2D center;
+    private static Point2D center;
 
     Point2D up;
     Point2D down;
@@ -91,7 +91,7 @@ abstract public class Ball {
         return inner;
     }
 
-    public Point2D getPosition(){
+    public static Point2D getPosition(){
         return center;
     }
 
@@ -124,6 +124,10 @@ abstract public class Ball {
 
     public int getSpeedY(){
         return speedY;
+    }
+
+    public static void setCenter(Point2D p) {
+        center.setLocation(p);
     }
 
 
