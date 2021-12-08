@@ -18,6 +18,7 @@
 package View;
 
 import Controller.GameController;
+import Controller.ScoreController;
 import Model.Ball;
 import Model.Brick;
 import Model.Player;
@@ -50,6 +51,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     //private Wall wall;
     private GameController gameController;
+    private ScoreController scoreController;
 
     private String message;
 
@@ -79,7 +81,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.initialize();
         message = "";
         gameController = new GameController(new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430)));
-
+        scoreController = new ScoreController(gameController.getWall().score);
 
         debugConsole = new DebugConsole(owner,gameController,this);
         //initialize the first level
@@ -88,11 +90,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         gameTimer = new Timer(10,e ->{
             gameController.move();
             gameController.findWallImpacts();
-            message = String.format("Bricks: %d Balls %d",gameController.getCurrentBrickCount(),gameController.getCurrentBallCount());
+            message = String.format("Bricks: %d Balls: %d Score: %d",gameController.getCurrentBrickCount(),gameController.getCurrentBallCount(),scoreController.getCurrentScore());
             if(gameController.isCurrentBallLost()){
                 if(gameController.isCurrentBallEnd()){
                     gameController.wallReset();
                     message = "Game over";
+                    scoreController.writeScoreFile();
                 }
                 gameController.ballReset();
                 gameTimer.stop();
@@ -270,6 +273,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
+    }
+
+    public ScoreController getScoreController(){
+        return scoreController;
     }
 
     @Override
