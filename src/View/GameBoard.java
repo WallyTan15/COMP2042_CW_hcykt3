@@ -19,10 +19,7 @@ package View;
 
 import Controller.GameController;
 import Controller.ScoreController;
-import Model.Ball;
-import Model.Brick;
-import Model.Player;
-import Model.Wall;
+import Model.*;
 import View.DebugConsole;
 
 import javax.swing.*;
@@ -49,7 +46,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Timer gameTimer;
 
-    //private Wall wall;
+    private GameFrame owner;
     private GameController gameController;
     private ScoreController scoreController;
 
@@ -73,7 +70,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         strLen = 0;
         showPauseMenu = false;
 
-
+        this.owner = (GameFrame) owner;
 
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
@@ -95,6 +92,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(gameController.isCurrentBallEnd()){
                     gameController.wallReset();
                     message = "Game over";
+                    this.owner.enableGameOverMenu();
                     scoreController.writeScoreFile();
                 }
                 gameController.ballReset();
