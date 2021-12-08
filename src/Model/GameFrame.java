@@ -19,6 +19,7 @@ package Model;
 
 import View.GameBoard;
 import View.HomeMenu;
+import View.InfoMenu;
 import View.ScoreBoard;
 
 import javax.swing.*;
@@ -33,6 +34,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
+    private InfoMenu infoMenu;
     private ScoreBoard scoreBoard;
 
     private boolean gaming;
@@ -48,12 +50,13 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
 
+        infoMenu = new InfoMenu(this,new Dimension(450,300));
+
         scoreBoard = new  ScoreBoard(this,new Dimension(450,300),gameBoard.getScoreController());
 
         this.add(homeMenu,BorderLayout.CENTER);
 
         this.setUndecorated(true);
-
 
     }
 
@@ -78,6 +81,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     public void enableHomeMenu() {
         this.dispose();
+        this.remove(infoMenu);
         this.remove(scoreBoard);
         this.add(homeMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
@@ -89,6 +93,15 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.dispose();
         this.remove(homeMenu);
         this.add(scoreBoard,BorderLayout.CENTER);
+        this.setUndecorated(true);
+        initialize();
+        this.addWindowFocusListener(this);
+    }
+
+    public void enableInfoMenu() {
+        this.dispose();
+        this.remove(homeMenu);
+        this.add(infoMenu,BorderLayout.CENTER);
         this.setUndecorated(true);
         initialize();
         this.addWindowFocusListener(this);
