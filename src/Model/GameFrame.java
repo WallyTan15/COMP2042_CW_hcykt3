@@ -17,6 +17,9 @@
  */
 package Model;
 
+import View.GameBoard;
+import View.HomeMenu;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
