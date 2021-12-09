@@ -119,6 +119,35 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
 
         g2d.drawString(finalScore,x,y);
 
+        if(scoreController.getCurrentScore() <= 61){
+            x -= 110;
+            y += 50;
+            g2d.drawString("You are in beginner level!", x, y);
+        }
+        else if(scoreController.getCurrentScore() >= 62 && scoreController.getCurrentScore() <= 123){
+            x -= 55;
+            y += 50;
+            g2d.drawString("You get the skills!",x,y);
+        }
+        else if(scoreController.getCurrentScore() >= 124 && scoreController.getCurrentScore() <= 185){
+            x -= 110;
+            y += 50;
+            g2d.drawString("You are becoming an expert!",x,y);
+        }
+        else if(scoreController.getCurrentScore() >= 186 && scoreController.getCurrentScore() <= 216){
+            x -= 110;
+            y += 50;
+            g2d.drawString("You are the master of game!",x,y);
+        }
+        else if(scoreController.getCurrentScore() == 217){
+            x -= 20;
+            y += 50;
+            g2d.drawString("Congratulations!",x,y);
+
+            x -= 60;
+            y += 30;
+            g2d.drawString("All walls are destroyed!",x,y);
+        }
     }
 
     public void drawButton(Graphics2D g2d) {
