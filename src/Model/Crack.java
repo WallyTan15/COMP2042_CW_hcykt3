@@ -78,27 +78,27 @@ public class Crack {
                 start.setLocation(bounds.x + bounds.width, bounds.y);
                 end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
                 Point tmp = makeRandomPoint(start,end,VERTICAL);
-                makeCrack(impact,tmp);
+                drawCrack(impact,tmp);
 
                 break;
             case RIGHT:
                 start.setLocation(bounds.getLocation());
                 end.setLocation(bounds.x, bounds.y + bounds.height);
                 tmp = makeRandomPoint(start,end,VERTICAL);
-                makeCrack(impact,tmp);
+                drawCrack(impact,tmp);
 
                 break;
             case UP:
                 start.setLocation(bounds.x, bounds.y + bounds.height);
                 end.setLocation(bounds.x + bounds.width, bounds.y + bounds.height);
                 tmp = makeRandomPoint(start,end,HORIZONTAL);
-                makeCrack(impact,tmp);
+                drawCrack(impact,tmp);
                 break;
             case DOWN:
                 start.setLocation(bounds.getLocation());
                 end.setLocation(bounds.x + bounds.width, bounds.y);
                 tmp = makeRandomPoint(start,end,HORIZONTAL);
-                makeCrack(impact,tmp);
+                drawCrack(impact,tmp);
 
                 break;
 
@@ -106,11 +106,11 @@ public class Crack {
     }
 
     /**
-     * makeCrack is a method that draw the crack based on the path specified.
+     * drawCrack is a method that draw the crack based on the path specified.
      * @param start  the starting point of the crack
      * @param end    the ending point of the crack
      */
-    protected void makeCrack(Point start, Point end){
+    protected void drawCrack(Point start, Point end){
 
         GeneralPath path = new GeneralPath();
 
