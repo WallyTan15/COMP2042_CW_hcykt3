@@ -41,5 +41,9 @@ public class ScoreController {
         score.writeFile();
     }
 
+    /**
+     * resetGameScore is a method that invokes the resetScore in the Score class.
+     * Reset the score to zero.
+     */
     public void resetGameScore(){ score.resetScore();}
 }
