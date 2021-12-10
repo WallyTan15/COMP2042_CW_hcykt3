@@ -21,7 +21,9 @@ import Model.GameFrame;
 
 import java.awt.*;
 
-
+/**
+ * GraphicsMain is a class to run amd play the game
+ */
 public class GraphicsMain {
 
     public static void main(String[] args){
