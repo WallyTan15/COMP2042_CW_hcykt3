@@ -40,4 +40,6 @@ public class ScoreController {
     public void writeScoreFile(){
         score.writeFile();
     }
+
+    public void resetGameScore(){ score.resetScore();}
 }

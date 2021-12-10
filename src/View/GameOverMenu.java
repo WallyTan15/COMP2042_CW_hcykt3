@@ -138,7 +138,8 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         g2d.drawString(GAMEOVER_TITTLE,x,y);
 
         String finalScore = String.format(FINALSCORE_TEXT + "%d", scoreController.getCurrentScore());//this
-
+        scoreController.resetGameScore();
+        
         strLen = menuFont.getStringBounds(finalScore,frc).getBounds().width;
 
 

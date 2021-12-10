@@ -105,4 +105,11 @@ public class Score {
         readFile();
         System.arraycopy(gameRecord, 0, record, 0, gameRecord.length);
     }
+
+    /**
+     * resetScore is a method that resets the score to zero
+     */
+    public void resetScore(){
+        score = 0;
+    }
 }
