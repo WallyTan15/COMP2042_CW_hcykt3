@@ -11,6 +11,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * ScoreBoard is a class deals with the view of the scoreboard.
+ */
 public class ScoreBoard extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String SCOREBOARD_TITTLE = "SCOREBOARD";
@@ -45,6 +48,16 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
 
     private boolean backClicked;
 
+    /**
+     * ScoreBoard constructor initializes the scoreboard.
+     * Create the buttons.
+     * Create BasicStroke objects.
+     * Set the fonts.
+     * Create the record array
+     * @param owner             the GameFrame owner object
+     * @param area              the size of the screen
+     * @param scoreController   the ScoreController object
+     */
     public ScoreBoard(GameFrame owner, Dimension area, ScoreController scoreController) {
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -71,10 +84,21 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         record = new int[10];
     }
 
+    /**
+     * paint is a method that draw the scoreboard menu view.
+     * @param g  the Graphics Object
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
+    /**
+     * drawMenu is a method that draw the features of the scoreboard menu.
+     * Draw the container.
+     * Draw the scoreboard.
+     * Draw the buttons.
+     * @param g2d  the Graphics2D Object
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -97,6 +121,10 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         g2d.setColor(prevColor);
     }
 
+    /**
+     * drawContainer is a method that determines the features of the scoreboard menu container.
+     * @param g2d  the Graphics2D Object
+     */
     private void drawContainer(Graphics2D g2d){
         Color prev = g2d.getColor();
 
@@ -118,8 +146,12 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         g2d.setColor(prev);
     }
 
+    /**
+     * drawScoreBoard is a method that draw the scoreboard with specified features at the specific positions at the scoreboard menu.
+     * @param g2d  the Graphics2D Object
+     */
     private void drawScoreBoard(Graphics2D g2d){
-        copyRecord();
+        scoreController.copyGameRecord(record);
 
         int i = 0;
 
@@ -155,6 +187,11 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         g2d.drawString(scoreContent, sX, sY);
     }
 
+    /**
+     * drawButton is a method that draw the buttons with specified features at the specific positions of scoreboard menu.
+     * Responsible for changing the color of the text and button when it is clicked.
+     * @param g2d  the Graphics2D Object
+     */
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
@@ -186,12 +223,10 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         }
     }
 
-
-    public void copyRecord() {
-        scoreController.copyGameRecord(record);
-
-    }
-
+    /**
+     * mouseClicked is a method that deals with the implementations of the scoreboard menu when the mouseclick is occurred.
+     * @param mouseEvent  the MouseEvent object that indicate the mouse click
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -200,6 +235,10 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         }
     }
 
+    /**
+     * mousePressed is a method that deals with the implementation of the scoreboard menu when the press of mouse is occurred.
+     * @param mouseEvent  the MouseEvent object that indicate the mouse press
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -209,6 +248,10 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         }
     }
 
+    /**
+     * mouseReleased is a method that deals with the implementation of the scoreboard menu when the mouse is released.
+     * @param mouseEvent  the MouseEvent object that indicate if the mouse is released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(backClicked) {
@@ -232,8 +275,16 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
 
     }
 
+    /**
+     * mouseMotion is a method that deals with the implementation of scoreboard menu when the cursor is pointing at the buttons.
+     * @param mouseEvent  the MouseEvent object that indicate if the cursor is pointing at the buttons
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-
+        Point p = mouseEvent.getPoint();
+        if(backButton.contains(p))
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        else
+            this.setCursor(Cursor.getDefaultCursor());
     }
 }

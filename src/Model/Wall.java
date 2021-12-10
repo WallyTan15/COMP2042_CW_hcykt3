@@ -21,7 +21,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
+/**
+ * Wall is a class that deals with the implementations of ball, player, score, crack, brick and levels.
+ */
 public class Wall {
 
     private static final int LEVELS_COUNT = 7;
@@ -48,6 +50,19 @@ public class Wall {
     private int ballCount;
     private boolean ballLost;
 
+    /**
+     * Wall constructor initialize the values and integrate the classes in model to create a fundamental gameplay output.
+     * Create levels.
+     * Create a Random object.
+     * Create a Ball object.
+     * Create a Player object.
+     * Create a Score object.
+     * @param drawArea             the area of the game screen in rectangle
+     * @param brickCount           the total number of bricks in a single level
+     * @param lineCount            the total number of lines
+     * @param brickDimensionRatio  the dimension ratio of the brick
+     * @param ballPos              the initial position of the ball
+     */
     public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
         this.startPoint = new Point(ballPos);
@@ -79,6 +94,15 @@ public class Wall {
 
     }
 
+    /**
+     * makeSingleTypeLevel is a method that create the wall with one type of the brick.
+     * @param drawArea        the area of the game screen in rectangle
+     * @param brickCnt        the total number of bricks in a single level
+     * @param lineCnt         the total number of lines
+     * @param brickSizeRatio  the dimension ratio of the brick
+     * @param type            the type of the brick
+     * @return                return a three-layer wall with single type of brick
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -119,6 +143,16 @@ public class Wall {
 
     }
 
+    /**
+     * makeChessboardLevel is a method that create the wall with two type of the brick.
+     * @param drawArea        the area of the game screen in rectangle
+     * @param brickCnt        the total number of bricks in a single level
+     * @param lineCnt         the total number of lines
+     * @param brickSizeRatio  the dimension ratio of the brick
+     * @param typeA           the type of the brick
+     * @param typeB           the type of the brick
+     * @return                return a three-layer wall with two type of brick
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -164,10 +198,22 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * makeBall is a method that create the RubberBall object at the specified position.
+     * @param ballPos  the initial position of the ball
+     */
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
 
+    /**
+     * makeLevels is a method that create the levels and determines the type of the wall.
+     * @param drawArea             the area of the game screen in rectangle
+     * @param brickCount           the total number of bricks in a single level
+     * @param lineCount            the total number of lines
+     * @param brickDimensionRatio  the dimension ratio of the brick
+     * @return                     return the levels with different wall
+     */
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -180,11 +226,17 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * move is a method that deals with the movement of the player and ball.
+     */
     public void move(){
         player.move();
         ball.move();
     }
 
+    /**
+     * findImpacts is a method that update the status of the ball and brick when impact is occurred between them.
+     */
     public void findImpacts(){
         if(player.impact(ball)){
             ball.reverseY();
@@ -208,6 +260,10 @@ public class Wall {
         }
     }
 
+    /**
+     * impactWall is a method that returns the boolean value to determine if the impact between the ball and brick is occurred.
+     * @return  return the boolean value to show if the impact is occurred
+     */
     private boolean impactWall(){
         for(Brick b : bricks){
             switch(b.findImpact(ball)) {
@@ -231,23 +287,43 @@ public class Wall {
         return false;
     }
 
+    /**
+     * impactBorder is a method that return the boolean values.
+     * to show if the impact between ball and game border is occurred.
+     * @return  return the boolean value to show if the impact is occurred
+     */
     private boolean impactBorder(){
         Point2D p = ball.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+    /**
+     * getBrickCount is a method that returns the number of the bricks.
+     * @return  return the number of the bricks
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * getBallCount is a method that returns the number of the balls.
+     * @return  return the number of the balls
+     */
     public int getBallCount(){
         return ballCount;
     }
 
+    /**
+     * isBallLost is a method that returns the boolean value to show if the ball is lost.
+     * @return  return the boolean value to show if the ball is lost
+     */
     public boolean isBallLost(){
         return ballLost;
     }
 
+    /**
+     * ballReset is a method that reset the status of the ball and player.
+     */
     public void ballReset(){
         player.moveTo(startPoint);
         ball.moveTo(startPoint);
@@ -263,6 +339,9 @@ public class Wall {
         ballLost = false;
     }
 
+    /**
+     * wallReset is the method that reset the status of brick and wall.
+     */
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
@@ -270,35 +349,68 @@ public class Wall {
         ballCount = 3;
     }
 
+    /**
+     * ballEnd is a method that returns that boolean value to show if there is any remaining balls.
+     * @return  returns the boolean value to show if there is any remaining balls
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * isDone is a method that return the boolean value to show if the wall is completely destroyed.
+     * @return  return the boolean value to show if the wall is completely destroyed
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * nextLevel is a method that move the current level to the next level.
+     */
     public void nextLevel(){
         bricks = levels[level++];
         this.brickCount = bricks.length;
     }
 
+    /**
+     * hasLevel is a method that returns the boolean value to show if there are next levels.
+     * @return  return the boolean value to show if there are next levels
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * setBallXSpeed is a method that calls the method in ball to set the speed of the ball in x-axis direction.
+     * @param s  speed of the ball
+     */
     public void setBallXSpeed(int s){
         ball.setXSpeed(s);
     }
 
+    /**
+     * setBallYSpeed is a method that calls the method in ball to set the speed of the ball in y-axis direction.
+     * @param s  speed of the ball
+     */
     public void setBallYSpeed(int s){
         ball.setYSpeed(s);
     }
 
+    /**
+     * resetBallCount is a method that resets the number of ball.
+     */
     public void resetBallCount(){
         ballCount = 3;
     }
 
+    /**
+     * makeBrick is a method that create the different Brick object based on the specified type.
+     * @param point  the position of the brick
+     * @param size   the size of the brick
+     * @param type   the type of the brick
+     * @return       return the Brick object
+     */
     private Brick makeBrick(Point point, Dimension size, int type){
         Brick out;
         switch(type){

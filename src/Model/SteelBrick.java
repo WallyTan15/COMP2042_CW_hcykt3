@@ -21,7 +21,11 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-
+/**
+ * SteelBrick is the subclass of the Brick class.
+ * Inherits the variable and methods from Brick class.
+ * Deal with the features of SteelBrick.
+ */
 public class SteelBrick extends Brick {
 
     private static final String NAME = "Steel Brick";
@@ -33,23 +37,47 @@ public class SteelBrick extends Brick {
     private Random rnd;
     private Shape brickFace;
 
+    /**
+     * SteelBrick constructor call the constructor of its parent class, Brick.
+     * Pass the name, position, size and strength to Brick class.
+     * Create a Random object.
+     * Get the brickFace from Brick class.
+     * @param point  the position of the brick
+     * @param size   the size of the brick
+     */
     public SteelBrick(Point point, Dimension size){
         super(NAME,point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         rnd = new Random();
         brickFace = super.brickFace;
     }
 
-
+    /**
+     * makeBrickFace is an override method that create the features of brick.
+     * @param pos   the position of the brick
+     * @param size  the size of the brick
+     * @return      return the shape and size of the brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * getBrick is an override method that returns the brickFace.
+     * Encapsulation for brickFace.
+     * @return  return the shape and the size of the brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * setImpact is an method that update the status of the brick after impact is occurred.
+     * @param point  the point of impact
+     * @param dir    the direction of impact
+     * @return       return the boolean values to show if the brick is broken
+     */
     public  boolean setImpact(Point2D point , int dir){
         if(super.isBroken())
             return false;
@@ -57,6 +85,9 @@ public class SteelBrick extends Brick {
         return  super.isBroken();
     }
 
+    /**
+     * impact is the method that reduce the strength of the brick and set the boolean value broken with a possibility.
+     */
     public void impact(){
         if(rnd.nextDouble() < STEEL_PROBABILITY){
             super.impact();

@@ -28,7 +28,9 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
 
-
+/**
+ * GameBoard is a class that deals with the view of the gameplay.
+ */
 public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
 
     private static final String CONTINUE = "Continue";
@@ -63,7 +65,14 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
-
+    /**
+     * GameBoard constructor deals with the view of the gameplay and gameTimer.
+     * Create a GameController object.
+     * Create a ScoreController object.
+     * Create a DebugConsole object.
+     * Create a Timer object.
+     * @param owner  the Jframe owner object
+     */
     public GameBoard(JFrame owner){
         super();
 
@@ -118,7 +127,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     }
 
 
-
+    /**
+     * initialize is a method that initializes the game board.
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
@@ -128,7 +139,15 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         this.addMouseMotionListener(this);
     }
 
-
+    /**
+     * paint is a method that draw the game board view.
+     * Draw the message on game board screen.
+     * Draw the ball.
+     * Draw the brick.
+     * Draw the player.
+     * Draw the pause menu screen.
+     * @param g  the Graphics Object
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -152,6 +171,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * clear is a method that clear the game board screen.
+     * @param g2d  the Graphics2D object
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(BG_COLOR);
@@ -159,6 +182,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * drawBrick is a method that draw the brick on the game board screen.
+     * @param brick  the Brick object
+     * @param g2d    the Graphics2D object
+     */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -172,6 +200,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * drawBall is a method that draw the ball on the game board screen screen.
+     * @param ball  the Ball object
+     * @param g2d   the Graphics2D object
+     */
     private void drawBall(Ball ball, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -186,6 +219,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * drawPlayer is a method that draw the player on the game board screen.
+     * @param p    the Player object
+     * @param g2d  the Graphics2D object
+     */
     private void drawPlayer(Player p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -199,11 +237,19 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
+    /**
+     * drawMenu is a method that draw the pause menu on the game board screen.
+     * @param g2d  the Graphics2D object
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * obscureGameBoard is a method that obscure the game board screen.
+     * @param g2d  the Graphics2D object
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -219,6 +265,12 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * drawPauseMenu is a method that draw the pause menu on the game board screen.
+     * Draw texts.
+     * Draw buttons.
+     * @param g2d  the Graphics2D object
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();
@@ -273,6 +325,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * getScoreController is a method that returns the ScoreController object which is created in GameBoard class.
+     * @return  return the ScoreController object
+     */
     public ScoreController getScoreController(){
         return scoreController;
     }
@@ -281,6 +337,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * keyPressed is a method that deals with the implementations of the game board when the specified key is pressed.
+     * @param keyEvent  the KeyEvent object that indicate if the specified key is pressed
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
@@ -310,11 +370,19 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * keyReleased is a method that deals with the implementations of the game board when the key is released.
+     * @param keyEvent   the KeyEvent object that indicate if the key is released
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         gameController.getPlayer().stop();
     }
 
+    /**
+     * mouseClicked is a method that deals with the implementations of the pause menu when it is being shown.
+     * @param mouseEvent  the MouseEvent object that indicate the mouse click
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -362,6 +430,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     }
 
+    /**
+     * mouseMotion is a method that deals with the implementation of pause menu when the cursor is pointing at the buttons.
+     * @param mouseEvent  the MouseEvent object that indicate if the cursor is pointing at the buttons
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -376,6 +448,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
     }
 
+    /**
+     * onLostFocus is a method that deals with the implementation of game board when it is not in focus.
+     */
     public void onLostFocus(){
         gameTimer.stop();
         message = "Focus Lost";

@@ -11,6 +11,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * GameOverMenu is a class that deals with the view of the game over menu.
+ */
 public class GameOverMenu extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String GAMEOVER_TITTLE = "GAME OVER";
@@ -36,6 +39,13 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
 
     private int strLen;
 
+    /**
+     * GameOverMenu constructor initialize the game over menu.
+     * Create the button.
+     * Set the fonts.
+     * @param owner            the GameFrame owner object
+     * @param scoreController  the ScoreController object
+     */
     public GameOverMenu(GameFrame owner, ScoreController scoreController) {
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -43,7 +53,7 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
-        this.owner = owner;//this
+        this.owner = owner;
         this.scoreController = scoreController;
 
         menuFace = new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT);
@@ -58,12 +68,20 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         strLen = 0 ;
     }
 
+    /**
+     * paint is a method that draw the home menu view.
+     * @param g  the Graphics Object
+     */
     public void paint(Graphics g){
-        obscureGameBoard((Graphics2D)g);
+        obscureScreen((Graphics2D)g);
         drawGameOverMenu((Graphics2D)g);
     }
 
-    public void obscureGameBoard(Graphics2D g2d) {
+    /**
+     * obscureScreen is a method that obscure the screen.
+     * @param g2d  the Graphics2D Object
+     */
+    public void obscureScreen(Graphics2D g2d) {
         Composite tmp = g2d.getComposite();
         Color tmpColor = g2d.getColor();
 
@@ -77,7 +95,12 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         g2d.setColor(tmpColor);
     }
 
-
+    /**
+     * drawGameOverMenu is a method that draw the features of the game over menu.
+     * Draw the texts.
+     * Draw the buttons.
+     * @param g2d  the Graphics2D Object
+     */
     public void drawGameOverMenu(Graphics2D g2d){
         Font prevFont = g2d.getFont();
         Color prevColor = g2d.getColor();
@@ -97,6 +120,11 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         g2d.setColor(prevColor);
     }
 
+    /**
+     * drawText is a method that draw the texts with specified features at the specific positions of game over menu.
+     * Draw the reward message according to the game score.
+     * @param g2d  the Graphics2D Object
+     */
     public void drawText(Graphics2D g2d) {
         g2d.setFont(menuFont);
         g2d.setColor(MENU_COLOR);
@@ -150,6 +178,11 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         }
     }
 
+    /**
+     * drawButton is a method that draw the buttons with specified features at the specific positions of game over menu.
+     * Responsible for changing the color of the text and button when it is clicked.
+     * @param g2d the Graphics2D Object
+     */
     public void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
@@ -181,10 +214,10 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         }
     }
 
-    public static GameFrame getOwner(){
-        return owner;
-    }
-
+    /**
+     * mouseClicked is a method that deals with the implementations of the game over menu when the mouseclick is occurred.
+     * @param mouseEvent the MouseEvent object that indicate the mouse click
+     */
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -193,6 +226,10 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         }
     }
 
+    /**
+     * mousePressed is a method that deals with the implementations of the game over menu when the press of mouse is occurred.
+     * @param mouseEvent the MouseEvent object that indicate the mouse press
+     */
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();
@@ -202,6 +239,10 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
         }
     }
 
+    /**
+     * mouseReleased is a method that deals with the implementation of the game over menu when the mouse is released.
+     * @param mouseEvent  the MouseEvent object that indicate if the mouse is released
+     */
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
         if(backClicked) {
@@ -225,6 +266,10 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
 
     }
 
+    /**
+     * mouseMotion is a method that deals with the implementation of game over menu when the cursor is pointing at the buttons.
+     * @param mouseEvent  the MouseEvent object that indicate if the cursor is pointing at the buttons
+     */
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
         Point p = mouseEvent.getPoint();

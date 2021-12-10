@@ -21,6 +21,10 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
+/**
+ * RubberBall is the subclass of the Ball class.
+ * Inherit the variable and methods from Ball class.
+ */
 public class RubberBall extends Ball {
 
 
@@ -28,12 +32,22 @@ public class RubberBall extends Ball {
     private static final Color DEF_INNER_COLOR = new Color(255, 219, 88);
     private static final Color DEF_BORDER_COLOR = DEF_INNER_COLOR.darker().darker();
 
-
+    /**
+     * RubberBall constructor call the constructor of its parent class, Ball.
+     * Pass the initial center position, radius and color of the ball to Ball class.
+     * @param center  the initial center position of the ball
+     */
     public RubberBall(Point2D center){
         super(center,DEF_RADIUS,DEF_RADIUS,DEF_INNER_COLOR,DEF_BORDER_COLOR);
     }
 
-
+    /**
+     * makeBall is an override method that create the features of the ball.
+     * @param center   the center of the ball
+     * @param radiusA  the width of the ball
+     * @param radiusB  the height of the ball
+     * @return         return the the shape, size and initial position of the ball
+     */
     @Override
     protected Shape makeBall(Point2D center, int radiusA, int radiusB) {
 

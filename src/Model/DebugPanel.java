@@ -23,7 +23,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
-
+/**
+ * DebugPanel is a class that deals with the function of the debug panel.
+ */
 public class DebugPanel extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
@@ -37,6 +39,12 @@ public class DebugPanel extends JPanel {
 
     private Wall wall;
 
+    /**
+     * DebugPanel constructor initialize the values of the debug panel.
+     * Create the buttons to skip the level and reset the number of ball.
+     * Create the sliders for the speed of ball in both x-axis and y-axis directions.
+     * @param wall
+     */
     public DebugPanel(Wall wall){
 
         this.wall = wall;
@@ -57,17 +65,33 @@ public class DebugPanel extends JPanel {
 
     }
 
+    /**
+     * initialize is a method that initialize the debug panel.
+     */
     private void initialize(){
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
     }
 
+    /**
+     * makeButton is a method that creates the button.
+     * @param title  the tittle of the button
+     * @param e      the ActionListener
+     * @return       return the button
+     */
     private JButton makeButton(String title, ActionListener e){
         JButton out = new JButton(title);
         out.addActionListener(e);
         return  out;
     }
 
+    /**
+     * makeSlider is a method that creates the slider.
+     * @param min  the minimum value of the slider
+     * @param max  the maximum value of the slider
+     * @param e    the ChangeListener
+     * @return     return the slider
+     */
     private JSlider makeSlider(int min, int max, ChangeListener e){
         JSlider out = new JSlider(min,max);
         out.setMajorTickSpacing(1);
@@ -77,6 +101,11 @@ public class DebugPanel extends JPanel {
         return out;
     }
 
+    /**
+     * setValues is a method that set the speed of the ball in x-axis and y-axis directions.
+     * @param x  the speed of ball in x-axis
+     * @param y  the speed of ball in y-axis
+     */
     public void setValues(int x,int y){
         ballXSpeed.setValue(x);
         ballYSpeed.setValue(y);

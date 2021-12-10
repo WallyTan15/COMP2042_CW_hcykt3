@@ -10,6 +10,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * InfoMenu is a class that deals with the view of the information menu.
+ */
 public class InfoMenu extends JComponent implements MouseListener, MouseMotionListener {
 
     private static final String INSTRUCTIONS_TITLE = "INSTRUCTIONS";
@@ -51,15 +54,25 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private GameFrame owner;
 
+    /**
+     * InfoMenu constructor initializes the information menu.
+     * Create the buttons.
+     * Create BasicStroke objects.
+     * Set the fonts.
+     * @param owner  the GameFrame owner object
+     * @param area   the size of the screen
+     */
     public InfoMenu(GameFrame owner, Dimension area) {
-        this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
-        menuFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
         this.requestFocusInWindow();
+
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
 
         this.owner = owner;
+
+        menuFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH,DEF_HEIGHT));
+        this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
 
         Dimension btnDim = new Dimension(area.width / 5, area.height / 12);
         backButton = new Rectangle(btnDim);
@@ -73,10 +86,21 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
         buttonFont = new Font("Monospaced",Font.BOLD, backButton.height-2);
     }
 
+    /**
+     * paint is a method that draw the information menu view.
+     * @param g  the Graphics Object
+     */
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
+    /**
+     * drawMenu is a method that draw the features of the information menu.
+     * Draw the container.
+     * Draw the texts.
+     * Draw the buttons.
+     * @param g2d  the Graphics2D Object
+     */
     public void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
@@ -99,6 +123,10 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prevColor);
     }
 
+    /**
+     * drawContainer is a method that determines the features of the information menu container.
+     * @param g2d  the Graphics2D Object
+     */
     private void drawContainer(Graphics2D g2d){
         Color prev = g2d.getColor();
 
@@ -120,6 +148,10 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
         g2d.setColor(prev);
     }
 
+    /**
+     * drawText is a method that draw the texts with specified features at the specific positions at the information menu.
+     * @param g2d  the Graphics2D Object
+     */
     private void drawText(Graphics2D g2d){
 
         g2d.setColor(TEXT_COLOR);
@@ -190,6 +222,11 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
 
     }
 
+    /**
+     * drawButton is a method that draw the buttons with specified features at the specific positions of information menu.
+     * Responsible for changing the color of the text and button when it is clicked.
+     * @param g2d  the Graphics2D Object
+     */
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
@@ -223,26 +260,37 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
 
-
+    /**
+     * mouseClicked is a method that deals with the implementations of the information menu when the mouseclick is occurred.
+     * @param mouseEvent  the MouseEvent object that indicate the mouse click
+     */
     @Override
-    public void mouseClicked(MouseEvent e) {
-        Point p = e.getPoint();
+    public void mouseClicked(MouseEvent mouseEvent) {
+        Point p = mouseEvent.getPoint();
         if(backButton.contains(p)){
             owner.enableHomeMenu();
         }
     }
 
+    /**
+     * mousePressed is a method that deals with the implementation of the information menu when the press of mouse is occurred.
+     * @param mouseEvent  the MouseEvent object that indicate the mouse press
+     */
     @Override
-    public void mousePressed(MouseEvent e) {
-        Point p = e.getPoint();
+    public void mousePressed(MouseEvent mouseEvent) {
+        Point p = mouseEvent.getPoint();
         if(backButton.contains(p)){
             returnClicked = true;
             repaint(backButton.x,backButton.y,backButton.width+1,backButton.height+1);
         }
     }
 
+    /**
+     * mouseReleased is a method that deals with the implementation of the information menu when the mouse is released.
+     * @param mouseEvent  the MouseEvent object that indicate if the mouse is released
+     */
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent mouseEvent) {
         if(returnClicked ){
             returnClicked = false;
             repaint(backButton.x,backButton.y,backButton.width+1,backButton.height+1);
@@ -250,23 +298,27 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent mouseEvent) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent mouseEvent) {
 
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent mouseEvent) {
 
     }
 
+    /**
+     * mouseMotion is a method that deals with the implementation of information menu when the cursor is pointing at the buttons.
+     * @param mouseEvent  the MouseEvent object that indicate if the cursor is pointing at the buttons
+     */
     @Override
-    public void mouseMoved(MouseEvent e) {
-        Point p = e.getPoint();
+    public void mouseMoved(MouseEvent mouseEvent) {
+        Point p = mouseEvent.getPoint();
         if(backButton.contains(p))
             this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else

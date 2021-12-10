@@ -28,6 +28,9 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * DebugConsole is a class that deals with the function of the debug console.
+ */
 public class DebugConsole extends JDialog implements WindowListener{
 
     private static final String TITLE = "Debug Console";
@@ -38,7 +41,12 @@ public class DebugConsole extends JDialog implements WindowListener{
     private GameController gameController;
     private GameBoard gameBoard;
 
-
+    /**
+     * DebugConsole constructor deals with the view of the debug console when it is being created.
+     * @param owner           the Jframe owner object
+     * @param gameController  the GameController object
+     * @param gameBoard       the GameBoard object
+     */
     public DebugConsole(JFrame owner, GameController gameController, GameBoard gameBoard){
 
         this.gameController = gameController;
@@ -53,6 +61,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.pack();
     }
 
+    /**
+     * initialize is a method that initialize and show the debug console.
+     */
     private void initialize(){
         this.setModal(true);
         this.setTitle(TITLE);
@@ -62,7 +73,9 @@ public class DebugConsole extends JDialog implements WindowListener{
         this.setFocusable(true);
     }
 
-
+    /**
+     * setLocation is a method that set the position of the debug console.
+     */
     private void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();
@@ -95,6 +108,10 @@ public class DebugConsole extends JDialog implements WindowListener{
 
     }
 
+    /**
+     * WindowActivated is a method that deals with implementation of the debug console when the window is activated.
+     * @param windowEvent  the event to show the status of the window
+     */
     @Override
     public void windowActivated(WindowEvent windowEvent) {
         setLocation();

@@ -7,8 +7,7 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 
 /**
- * Created by filippo on 04/09/16.
- *
+ * Brick is an abstract class that deals with all the general functions of brick.
  */
 abstract public class Brick  {
 
@@ -32,7 +31,18 @@ abstract public class Brick  {
 
     private boolean broken;
 
-
+    /**
+     * Brick constructor initialize the basic values and features of the brick when a brick object is being created.
+     * Set the name of the brick.
+     * Set the color of the brick.
+     * Set the strength of the brick.
+     * @param name      the name of the brick
+     * @param pos       the position of the brick
+     * @param size      the size of the brick
+     * @param border    the border color of the brick
+     * @param inner     the inner color of the brick
+     * @param strength  the strength of the  brick
+     */
     public Brick(String name, Point pos,Dimension size,Color border,Color inner,int strength){
 
         broken = false;
@@ -44,25 +54,56 @@ abstract public class Brick  {
 
     }
 
+    /**
+     * makeBall is an abstract method that create the brick.
+     * @param pos   the position of the brick
+     * @param size  the size of the brick
+     * @return      return the shape and size of the brick
+     */
     protected abstract Shape makeBrickFace(Point pos,Dimension size);
 
-    public  boolean setImpact(Point2D point , int dir){
+    /**
+     * setImpact is a method that update the status of the brick after impact is occurred.
+     * @param point  the point of impact
+     * @param dir    the direction of impact
+     * @return       return the boolean values to show if the brick is broken
+     */
+    public boolean setImpact(Point2D point , int dir){
         if(broken)
             return false;
         impact();
         return  broken;
     }
 
+    /**
+     * getBrick is an abstract method that returns the brickFace.
+     * @return  return the shape and the size of the brick
+     */
     public abstract Shape getBrick();
 
+    /**
+     * getBorderColor is a method that returns the border color of the brick.
+     * Encapsulation for border.
+     * @return  return the border color of the brick
+     */
     public Color getBorderColor(){
         return  border;
     }
 
+    /**
+     * getInnerColor is a method that returns the inner color of the brick.
+     * Encapsulation for inner.
+     * @return  return the inner color of the brick
+     */
     public Color getInnerColor(){
         return inner;
     }
 
+    /**
+     * findImpact is a method that decides the impact direction between the ball and the brick.
+     * @param b  the ball
+     * @return   return the direction of the impact
+     */
     public final int findImpact(Ball b){
         if(broken)
             return 0;
@@ -78,20 +119,35 @@ abstract public class Brick  {
         return out;
     }
 
+    /**
+     * isBroken is a method that determines if the brick is broken and returns the result.
+     * @return  return the boolean values to show if the brick is broken
+     */
     public final boolean isBroken(){
         return broken;
     }
 
+    /**
+     * repair is a method that reset the status of the brick.
+     */
     public void repair() {
         broken = false;
         strength = fullStrength;
     }
 
+    /**
+     * impact is the method that reduce the strength of the brick and set the boolean value broken.
+     */
     public void impact(){
         strength--;
         broken = (strength == 0);
     }
 
+    /**
+     * getBrickFace is a method that returns brickFace.
+     * Encapsulation for brickFace.
+     * @return  return the shape and size of  the brick
+     */
     public Shape getBrickFace(){
         return brickFace;
     }

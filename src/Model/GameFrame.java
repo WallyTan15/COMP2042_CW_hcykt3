@@ -24,7 +24,9 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-
+/**
+ * GameFrame is a class that deals with the game frame window.
+ */
 public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
@@ -37,6 +39,15 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private boolean gaming;
 
+    /**
+     * GameFrame constructor creates a border layout.
+     * Create the HomeMenu object.
+     * Create the GameBoard object.
+     * Create the InfoMenu object.
+     * Create the ScoreBoard object.
+     * Create the GameOverMenu object.
+     * Add the HomeMenu to the container when GameFrame object is being created.
+     */
     public GameFrame(){
         super();
 
@@ -60,6 +71,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * initialize is a method that initialize and show the game frame.
+     */
     public void initialize(){
         this.setTitle(DEF_TITLE);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -68,6 +82,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setVisible(true);
     }
 
+    /**
+     * enableGameBoard is a method that transform the game frame from HomeMenu to GameBoard screen.
+     */
     public void enableGameBoard(){
         this.dispose();
         this.remove(homeMenu);
@@ -79,6 +96,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     }
 
+    /**
+     * enableHomeMenu is a method that transform the game frame to HomeMenu screen.
+     */
     public void enableHomeMenu() {
         this.dispose();
         this.remove(infoMenu);
@@ -90,6 +110,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * enableScoreBoard is a method that transform the game frame from HomeMenu to ScoreBoard screen.
+     */
     public void enableScoreBoard() {
         this.dispose();
         this.remove(homeMenu);
@@ -99,6 +122,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * enableInfoMenu is a method that transform the game frame from HomeMenu to InfoMenu screen.
+     */
     public void enableInfoMenu() {
         this.dispose();
         this.remove(homeMenu);
@@ -108,6 +134,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * enableGameOverMenu is a method that transform the game frame from GameBoard to GameOverMenu screen.
+     */
     public void enableGameOverMenu() {
         this.dispose();
         this.remove(gameBoard);
@@ -117,6 +146,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.addWindowFocusListener(this);
     }
 
+    /**
+     * autoLocate is a method that set the position of the game frame screen based on the device's screen size.
+     */
     private void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -124,7 +156,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.setLocation(x,y);
     }
 
-
+    /**
+     * windowGainedFocus is a method that deals with the implementations when the game frame is in focus.
+     * @param windowEvent  the event to show the status of the screen
+     */
     @Override
     public void windowGainedFocus(WindowEvent windowEvent) {
         /*
@@ -138,6 +173,10 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gaming = true;
     }
 
+    /**
+     * widowLostFocus is a method that deals with the implementations when the game frame is not in focus.
+     * @param windowEvent  the event to show the status of the screen
+     */
     @Override
     public void windowLostFocus(WindowEvent windowEvent) {
         if(gaming)
