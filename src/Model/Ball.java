@@ -13,10 +13,10 @@ abstract public class Ball {
 
     private static Point2D center;
 
-    Point2D up;
-    Point2D down;
-    Point2D left;
-    Point2D right;
+    private static Point2D up;
+    private static Point2D down;
+    private static Point2D left;
+    private static Point2D right;
 
     private Color border;
     private Color inner;
@@ -211,5 +211,20 @@ abstract public class Ball {
         center.setLocation(p);
     }
 
+    public static Point2D getUpPoint(){
+        return up;
+    }
+
+    public static Point2D getDownPoint(){
+        return down;
+    }
+
+    public static Point2D getLeftPoint(){
+        return left;
+    }
+
+    public static Point2D getRightPoint(){
+        return right;
+    }
 
 }

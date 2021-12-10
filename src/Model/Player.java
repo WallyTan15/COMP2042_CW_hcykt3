@@ -69,7 +69,7 @@ public class Player {
      * @return   return the boolean value to show if the impact of the ball is occurred on the player
      */
     public boolean impact(Ball b){
-        return playerFace.contains(b.getPosition()) && playerFace.contains(b.down) ;
+        return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDownPoint()) ;
     }
 
     /**
