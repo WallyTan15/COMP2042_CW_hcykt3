@@ -67,7 +67,7 @@ public class Score {
      * writeFile is a method that write the new game record to the Score.txt in the right order ranking.
      */
     public void writeFile() {
-        sortRanking();
+
         try{
             fileWriter = new FileWriter(file);
             int i;
@@ -86,7 +86,7 @@ public class Score {
     public void sortRanking() {
         int tmp;
         int gameScore = score;
-        readFile();
+
         for(int i = 0; i < 10; i++){
             if(gameScore > gameRecord[i]){
 
@@ -102,7 +102,6 @@ public class Score {
      * @param record  the array for storing the game records
      */
     public void copyRecord(int[] record){
-        readFile();
         System.arraycopy(gameRecord, 0, record, 0, gameRecord.length);
     }
 

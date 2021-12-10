@@ -42,6 +42,18 @@ public class ScoreController {
     }
 
     /**
+     * readScoreFile is a method that invokes the readFile method in the Score class.
+     * Read the game records from the Score.txt.
+     */
+    public void readScoreFile(){score.readFile();}
+
+    /**
+     * sortGameRecord is a method that invokes the readFile method in the Score class.
+     * Sort the game records in an array.
+     */
+    public void sortGameRecord(){score.sortRanking();}
+
+    /**
      * resetGameScore is a method that invokes the resetScore in the Score class.
      * Reset the score to zero.
      */

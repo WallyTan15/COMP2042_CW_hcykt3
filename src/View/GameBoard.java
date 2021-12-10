@@ -102,6 +102,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                     gameController.wallReset();
                     message = "Game over";
                     this.owner.enableGameOverMenu();
+                    scoreController.readScoreFile();
+                    scoreController.sortGameRecord();
                     scoreController.writeScoreFile();
                 }
                 gameController.ballReset();

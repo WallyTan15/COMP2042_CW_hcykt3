@@ -151,6 +151,7 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
      * @param g2d  the Graphics2D Object
      */
     private void drawScoreBoard(Graphics2D g2d){
+        scoreController.readScoreFile();
         scoreController.copyGameRecord(record);
 
         int i = 0;
