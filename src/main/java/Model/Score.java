@@ -15,7 +15,7 @@ public class Score {
 
     private FileWriter fileWriter;
 
-    private String path = "resources/Score.txt";
+    private String path = "src/main/resources/Score.txt";
     private File file;
 
     /**

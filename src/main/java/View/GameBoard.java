@@ -66,7 +66,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private DebugConsole debugConsole;
 
     private Image image;
-    private String path = "resources/Sky.jpg";
+    private String path = "src/main/resources/Sky.jpg";
 
     /**
      * GameBoard constructor deals with the view of the gameplay and gameTimer.
