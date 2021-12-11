@@ -24,6 +24,8 @@ public class Score {
      */
     public Score() {
 
+        score = 0;
+
         gameRecord = new int[10];
 
         file = new File(path);
