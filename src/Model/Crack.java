@@ -21,7 +21,7 @@ public class Crack {
 
     private Brick brick;
 
-    private GeneralPath crack;
+    private GeneralPath crackPath;
     private Random rnd;
 
     private int crackDepth;
@@ -38,7 +38,7 @@ public class Crack {
     public Crack(Brick brick, int crackDepth, int steps){
 
         this.brick = brick;
-        crack = new GeneralPath();
+        crackPath = new GeneralPath();
         this.crackDepth = crackDepth;
         this.steps = steps;
         rnd = new Random();
@@ -50,14 +50,14 @@ public class Crack {
      * @return  return crack
      */
     public GeneralPath draw(){
-        return crack;
+        return crackPath;
     }
 
     /**
      * reset is a method that reset the crack to empty.
      */
     public void reset(){
-        crack.reset();
+        crackPath.reset();
     }
 
     /**
@@ -138,7 +138,7 @@ public class Crack {
         }
 
         path.lineTo(end.x,end.y);
-        crack.append(path,true);
+        crackPath.append(path,true);
     }
 
     /**
