@@ -65,6 +65,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private DebugConsole debugConsole;
 
+    private Image image;
+    private String path = "resources/Sky.jpg";
+
     /**
      * GameBoard constructor deals with the view of the gameplay and gameTimer.
      * Create a GameController object.
@@ -83,6 +86,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
+        image = Toolkit.getDefaultToolkit().getImage(path);
 
         this.initialize();
         message = "";
@@ -157,6 +161,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         Graphics2D g2d = (Graphics2D) g;
 
         clear(g2d);
+
+        g2d.drawImage(image, 0,0, 600, 450, this);
 
         g2d.setColor(Color.BLUE);
         g2d.drawString(message,250,225);
