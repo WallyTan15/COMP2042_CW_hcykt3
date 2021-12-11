@@ -152,7 +152,13 @@ abstract public class Brick  {
         return brickFace;
     }
 
-
+    /**
+     * getStrength is a method that returns the strength of the brick
+     * @return  return the strength of the brick
+     */
+    public int getStrength() {
+        return strength;
+    }
 }
 
 
