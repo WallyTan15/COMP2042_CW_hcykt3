@@ -81,7 +81,7 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
      * obscureScreen is a method that obscure the screen.
      * @param g2d  the Graphics2D Object
      */
-    public void obscureScreen(Graphics2D g2d) {
+    private void obscureScreen(Graphics2D g2d) {
         Composite tmp = g2d.getComposite();
         Color tmpColor = g2d.getColor();
 
@@ -125,7 +125,7 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
      * Draw the reward message according to the game score.
      * @param g2d  the Graphics2D Object
      */
-    public void drawText(Graphics2D g2d) {
+    private void drawText(Graphics2D g2d) {
         g2d.setFont(menuFont);
         g2d.setColor(MENU_COLOR);
 
@@ -184,7 +184,7 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
      * Responsible for changing the color of the text and button when it is clicked.
      * @param g2d the Graphics2D Object
      */
-    public void drawButton(Graphics2D g2d) {
+    private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
         Rectangle2D buttonTextRect = buttonFont.getStringBounds(BACK_TEXT,frc).getBounds();
