@@ -93,7 +93,7 @@ public class Player {
     /**
      * moveRight is a method that control the movement of the player towards right by setting the value of moveAmount.
      */
-    public void movRight(){
+    public void moveRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 

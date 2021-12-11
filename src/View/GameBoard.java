@@ -350,7 +350,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 gameController.getPlayer().moveLeft();
                 break;
             case KeyEvent.VK_D:
-                gameController.getPlayer().movRight();
+                gameController.getPlayer().moveRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
