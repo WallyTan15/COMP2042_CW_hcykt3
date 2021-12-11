@@ -111,4 +111,20 @@ public class DebugPanel extends JPanel {
         ballYSpeed.setValue(y);
     }
 
+    /**
+     * getSpeedXSlider is a method that returns the slider which controls the speed of the ball in x-axis
+     * @return  return the slider which controls the speed of the ball in x-axis
+     */
+    public JSlider getSpeedXSlider(){
+        return ballXSpeed;
+    }
+
+    /**
+     * getSpeedYSlider is a method that returns the slider which controls the speed of the ball in y-axis
+     * @return  return the slider which controls the speed of the ball in y-axis
+     */
+    public JSlider getSpeedYSlider(){
+        return ballYSpeed;
+    }
+
 }
