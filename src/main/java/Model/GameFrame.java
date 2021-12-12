@@ -61,7 +61,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         infoMenu = new InfoMenu(this,new Dimension(450,300));
 
-        scoreBoard = new  ScoreBoard(this,new Dimension(450,300),gameBoard.getScoreController());
+        scoreBoard = new  ScoreBoard(this,new Dimension(450,300));
 
         gameOverMenu = new GameOverMenu(this,gameBoard.getScoreController());
 

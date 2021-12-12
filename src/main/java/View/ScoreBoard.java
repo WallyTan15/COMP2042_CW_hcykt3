@@ -2,6 +2,7 @@ package View;
 
 import Controller.ScoreController;
 import Model.GameFrame;
+import Model.Score;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,9 +57,8 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
      * Create the record array
      * @param owner             the GameFrame owner object
      * @param area              the size of the screen
-     * @param scoreController   the ScoreController object
      */
-    public ScoreBoard(GameFrame owner, Dimension area, ScoreController scoreController) {
+    public ScoreBoard(GameFrame owner, Dimension area) {
         this.setFocusable(true);
         this.requestFocusInWindow();
 
@@ -66,7 +66,7 @@ public class ScoreBoard extends JComponent implements MouseListener, MouseMotion
         this.addMouseMotionListener(this);
 
         this.owner = owner;
-        this.scoreController = scoreController;
+        scoreController = new ScoreController(new Score());
 
         scoreBoardFace = new Rectangle(new Point(0,0),new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
