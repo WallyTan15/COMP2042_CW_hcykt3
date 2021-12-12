@@ -68,8 +68,7 @@ Furthermore, there is a back button at the bottom.
 ### 4. ADDITIONAL LEVEL by SlimeBrick
 3 more levels related with SlimeBrick (Model) are added.
 SlimeBrick is a special brick that moves the ball to random position as an impact between ball and brick is occurred.
-It adds more fun to the game and makes the game becoming difficult.  
-
+It adds more fun to the game and makes the game becoming difficult.
 
 
 
