@@ -65,7 +65,7 @@ When the game is over, a game over menu will be displayed.
 It will demonstrate the final game score and display comments according to the resulted score. 
 Furthermore, there is a back button at the bottom.  
 
-### 4. ADDITIONAL LEVEL by SlimeBrick
+### 4. ADDITIONAL LEVEL
 3 more levels related with SlimeBrick (Model) are added.
 SlimeBrick is a special brick that moves the ball to random position as an impact between ball and brick is occurred.
 It adds more fun to the game and makes the game becoming difficult.
