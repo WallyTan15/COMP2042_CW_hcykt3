@@ -1,6 +1,6 @@
 package View;
 
-import Model.GameFrame;
+import Controller.GameFrameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,17 +52,17 @@ public class InfoMenu extends JComponent implements MouseListener, MouseMotionLi
 
     private boolean returnClicked;
 
-    private GameFrame owner;
+    private GameFrameController owner;
 
     /**
      * InfoMenu constructor initializes the information menu.
      * Create the buttons.
      * Create BasicStroke objects.
      * Set the fonts.
-     * @param owner  the GameFrame owner object
+     * @param owner  the GameFrameController owner object
      * @param area   the size of the screen
      */
-    public InfoMenu(GameFrame owner, Dimension area) {
+    public InfoMenu(GameFrameController owner, Dimension area) {
         this.setFocusable(true);
         this.requestFocusInWindow();
 

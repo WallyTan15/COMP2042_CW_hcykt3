@@ -15,8 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package Model;
+package Controller;
 
+import Model.DebugPanel;
+import Model.Wall;
 import View.*;
 
 import javax.swing.*;
@@ -25,45 +27,62 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 /**
- * GameFrame is a class that deals with the game frame window.
+ * GameFrameController is a class that deals with the game frame window.
  */
-public class GameFrame extends JFrame implements WindowFocusListener {
+public class GameFrameController extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
+    private static final int DEF_WIDTH = 600;
+    private static final int DEF_HEIGHT = 450;
 
+    private Wall wall;
+    private DebugPanel debugPanel;
     private GameBoard gameBoard;
     private HomeMenu homeMenu;
     private InfoMenu infoMenu;
     private ScoreBoard scoreBoard;
     private GameOverMenu gameOverMenu;
+    private GameController gameController;
+    private ScoreController scoreController;
+    private DebugController debugController;
 
     private boolean gaming;
 
     /**
-     * GameFrame constructor creates a border layout.
+     * GameFrameController constructor creates a border layout.
      * Create the HomeMenu object.
      * Create the GameBoard object.
      * Create the InfoMenu object.
      * Create the ScoreBoard object.
      * Create the GameOverMenu object.
-     * Add the HomeMenu to the container when GameFrame object is being created.
+     * Add the HomeMenu to the container when GameFrameController object is being created.
      */
-    public GameFrame(){
+    public GameFrameController(){
         super();
 
         gaming = false;
 
         this.setLayout(new BorderLayout());
 
-        gameBoard = new GameBoard(this);
+        wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+
+        debugPanel = new DebugPanel(wall);
+
+        gameController = new GameController(wall);
+
+        scoreController = new ScoreController(wall.score);
+
+        debugController = new DebugController(debugPanel);
+
+        gameBoard = new GameBoard(this,gameController,scoreController,debugController);
 
         homeMenu = new HomeMenu(this,new Dimension(450,300));
 
         infoMenu = new InfoMenu(this,new Dimension(450,300));
 
-        scoreBoard = new  ScoreBoard(this,new Dimension(450,300));
+        scoreBoard = new  ScoreBoard(this,new Dimension(450,300),scoreController);
 
-        gameOverMenu = new GameOverMenu(this,gameBoard.getScoreController());
+        gameOverMenu = new GameOverMenu(this,scoreController);
 
         this.add(homeMenu,BorderLayout.CENTER);
 

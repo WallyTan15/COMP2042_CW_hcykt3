@@ -1,7 +1,7 @@
 package View;
 
+import Controller.GameFrameController;
 import Controller.ScoreController;
-import Model.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +27,7 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
     private Font buttonFont;
     private Font menuFont;
 
-    private static GameFrame owner;
+    private static GameFrameController owner;
     private static ScoreController scoreController;
 
     private static final int DEF_WIDTH = 600;
@@ -43,10 +43,10 @@ public class GameOverMenu extends JComponent implements MouseListener, MouseMoti
      * GameOverMenu constructor initialize the game over menu.
      * Create the button.
      * Set the fonts.
-     * @param owner            the GameFrame owner object
+     * @param owner            the GameFrameController owner object
      * @param scoreController  the ScoreController object
      */
-    public GameOverMenu(GameFrame owner, ScoreController scoreController) {
+    public GameOverMenu(GameFrameController owner, ScoreController scoreController) {
         this.setFocusable(true);
         this.requestFocusInWindow();
 

@@ -17,10 +17,11 @@
  */
 package View;
 
+import Controller.DebugController;
 import Controller.GameController;
+import Controller.GameFrameController;
 import Controller.ScoreController;
 import Model.*;
-import View.DebugConsole;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +49,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Timer gameTimer;
 
-    private GameFrame owner;
+    private GameFrameController owner;
     private GameController gameController;
     private ScoreController scoreController;
 
@@ -76,13 +77,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
      * Create a Timer object.
      * @param owner  the Jframe owner object
      */
-    public GameBoard(JFrame owner){
+    public GameBoard(JFrame owner, GameController gameController, ScoreController scoreController, DebugController debugController){
         super();
 
         strLen = 0;
         showPauseMenu = false;
 
-        this.owner = (GameFrame) owner;
+        this.owner = (GameFrameController) owner;
 
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
 
@@ -90,41 +91,41 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         this.initialize();
         message = "";
-        gameController = new GameController(new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430)));
-        scoreController = new ScoreController(gameController.getWall().score);
+        this.gameController = gameController;
+        this.scoreController = scoreController;
 
-        debugConsole = new DebugConsole(owner,gameController,this);
+        debugConsole = new DebugConsole(owner,gameController,debugController,this);
         //initialize the first level
-        gameController.nextGameLevel();
+        this.gameController.nextGameLevel();
 
         gameTimer = new Timer(10,e ->{
-            gameController.move();
-            gameController.findWallImpacts();
+            this.gameController.move();
+            this.gameController.findWallImpacts();
             message = String.format("Bricks: %d Balls: %d Score: %d",gameController.getCurrentBrickCount(),gameController.getCurrentBallCount(),scoreController.getCurrentScore());
-            if(gameController.isCurrentBallLost()){
-                if(gameController.isCurrentBallEnd()){
-                    gameController.wallReset();
+            if(this.gameController.isCurrentBallLost()){
+                if(this.gameController.isCurrentBallEnd()){
+                    this. gameController.wallReset();
                     this.owner.enableGameOverMenu();
-                    scoreController.readScoreFile();
-                    scoreController.sortGameRecord();
-                    scoreController.writeScoreFile();
+                    this.scoreController.readScoreFile();
+                    this.scoreController.sortGameRecord();
+                    this.scoreController.writeScoreFile();
                 }
-                gameController.ballReset();
+                this.gameController.ballReset();
                 gameTimer.stop();
             }
-            else if(gameController.isGameDone()){
-                if(gameController.hasNextLevel()){
+            else if(this.gameController.isGameDone()){
+                if(this.gameController.hasNextLevel()){
                     message = "Go to Next Level";
                     gameTimer.stop();
-                    gameController.ballReset();
-                    gameController.wallReset();
-                    gameController.nextGameLevel();
+                    this.gameController.ballReset();
+                    this.gameController.wallReset();
+                    this.gameController.nextGameLevel();
                 }
                 else{
                     this.owner.enableGameOverMenu();
-                    scoreController.readScoreFile();
-                    scoreController.sortGameRecord();
-                    scoreController.writeScoreFile();
+                    this.scoreController.readScoreFile();
+                    this.scoreController.sortGameRecord();
+                    this.scoreController.writeScoreFile();
                     gameTimer.stop();
                 }
             }

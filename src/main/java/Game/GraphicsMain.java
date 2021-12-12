@@ -17,7 +17,7 @@
  */
 package Game;
 
-import Model.GameFrame;
+import Controller.GameFrameController;
 
 import java.awt.*;
 
@@ -27,7 +27,7 @@ import java.awt.*;
 public class GraphicsMain {
 
     public static void main(String[] args){
-        EventQueue.invokeLater(() -> new GameFrame().initialize());
+        EventQueue.invokeLater(() -> new GameFrameController().initialize());
     }
 
 }

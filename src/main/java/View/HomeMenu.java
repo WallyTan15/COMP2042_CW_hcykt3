@@ -17,7 +17,7 @@
  */
 package View;
 
-import Model.GameFrame;
+import Controller.GameFrameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +63,7 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Font creditsFont;
     private Font buttonFont;
 
-    private GameFrame owner;
+    private GameFrameController owner;
 
     private boolean startClicked;
     private boolean exitClicked;
@@ -75,10 +75,10 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
      * Create the buttons.
      * Set the fonts.
      * Create BasicStroke objects.
-     * @param owner  the GameFrame owner object
+     * @param owner  the GameFrameController owner object
      * @param area   the size of the screen
      */
-    public HomeMenu(GameFrame owner,Dimension area){
+    public HomeMenu(GameFrameController owner, Dimension area){
 
         this.setFocusable(true);
         this.requestFocusInWindow();
