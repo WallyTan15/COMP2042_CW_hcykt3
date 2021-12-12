@@ -8,7 +8,6 @@ C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\SteelBrick.ja
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\Brick.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\Ball.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\DebugPanel.java
-C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\GameFrame.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\View\GameOverMenu.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\SlimeBrick.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Game\GraphicsMain.java
@@ -21,3 +20,4 @@ C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\Player.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Controller\GameController.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\ClayBrick.java
 C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Model\Score.java
+C:\Users\Wally\IdeaProjects\Brick_Destroy_Game\src\main\java\Controller\GameFrameController.java
